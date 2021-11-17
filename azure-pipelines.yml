@@ -54,4 +54,5 @@ stages:
           buildType: 'current'
           downloadType: 'single'
           downloadPath: '$(System.ArtifactsDirectory)'
+          artifactName: 'drop'
       
