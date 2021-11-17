@@ -37,6 +37,7 @@ stages:
       inputs:
         platform: '$(buildPlatform)'
         configuration: '$(buildConfiguration)'
+ 
     - task: PublishBuildArtifacts@1
       inputs:
         PathtoPublish: '$(Build.ArtifactStagingDirectory)'
