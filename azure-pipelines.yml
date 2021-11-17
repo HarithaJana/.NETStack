@@ -63,3 +63,4 @@ stages:
           appType: 'webAppLinux'
           WebAppName: 'webapp-azurepipeline-westeurope'
           packageForLinux: '$(System.DefaultWorkingDirectory)/_HarithaJana.Mavenproject/drop/*.zip'
+      - task: PublishBuildArtifacts@1
