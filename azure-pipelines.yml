@@ -43,15 +43,3 @@ stages:
         ArtifactName: 'drop'
         publishLocation: 'Container'
 
-- stage: Deploy
-  jobs:
-  - job: Deploy
-    pool:
-      vmImage: 'windows-latest'
-    steps:
-      - task: DownloadBuildArtifacts@1
-        inputs:
-          buildType: 'current'
-          downloadType: 'single'
-          downloadPath: '$(System.ArtifactsDirectory)'
-          artifactName: 'drop'
