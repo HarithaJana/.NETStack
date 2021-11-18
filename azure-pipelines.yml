@@ -43,22 +43,31 @@ stages:
         ArtifactName: 'drop'
         publishLocation: 'Container'
 - stage: Deploy
+  displayName: Deploy stage
+  dependsOn: Build
+  condition: succeeded()
   jobs:
-  - job: Deploy
+  - deployment: DeployWindowsWebApp
+    displayName: Deploy Windows Web App
+    environment: 'development'
+  
     pool:
       vmImage: 'windows-latest'
-    steps:
-    - task: DownloadPipelineArtifact@2
-      inputs:
-        buildType: 'current'
-        targetPath: '$(Pipeline.Workspace)'
-        artifactName: 'drop'
-    - task: AzureWebApp@1
-      inputs:
-        azureSubscription: 'RND-SBX-SSG-HJANA_01(4b311249-491b-4cd3-bd7a-5fe2c69a3c12)'
-        appType: 'webApp'
-        appName: 'webApp-AspNet-WestEurope'
-        package: '$(System.ArtifactsDirectory)/drop/aspnet4-sample.zip'
-        deploymentMethod: 'auto'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: DownloadPipelineArtifact@2
+            inputs:
+              buildType: 'current'
+              targetPath: '$(Pipeline.Workspace)'
+              artifactName: 'drop'
+          - task: AzureWebApp@1
+            inputs:
+              azureSubscription: 'RND-SBX-SSG-HJANA_01(4b311249-491b-4cd3-bd7a-5fe2c69a3c12)'
+              appType: 'webApp'
+              appName: 'webApp-AspNet-WestEurope'
+              package: '$(System.ArtifactsDirectory)/drop/aspnet4-sample.zip'
+              deploymentMethod: 'auto'
 
  
