@@ -57,11 +57,10 @@ stages:
         downloadType: 'single'
         downloadPath: '$(System.ArtifactsDirectory)'
         artifactName: 'drop'
-    - task: AzureRmWebAppDeployment@4
+    - task: AzureWebApp@1
       inputs:
-        ConnectionType: 'AzureRM'
         azureSubscription: 'RND-SBX-SSG-HJANA_01(4b311249-491b-4cd3-bd7a-5fe2c69a3c12)'
         appType: 'webApp'
-        WebAppName: 'webApp-AspNet-WestEurope'
-        packageForLinux: '''$(System.DefaultWorkingDirectory)/_HarithaJana..NETStack/drop/aspnet4-sample.zip'''
-    
+        appName: 'webApp-AspNet-WestEurope'
+        package: '$(System.DefaultWorkingDirectory)/**/*.zip'
+        deploymentMethod: 'auto'
