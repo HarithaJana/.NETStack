@@ -58,7 +58,7 @@ stages:
         azureSubscription: 'RND-SBX-SSG-HJANA_01(4b311249-491b-4cd3-bd7a-5fe2c69a3c12)'
         appType: 'webApp'
         appName: 'webApp-AspNet-WestEurope'
-        package: '''$(System.ArtifactsDirectory)/_HarithaJana..NETStack/drop/aspnet4-sample.zip'''
+        package: '$(System.ArtifactsDirectory)/drop/aspnet4-sample.zip'
         deploymentMethod: 'auto'
 
  
