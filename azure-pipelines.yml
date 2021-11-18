@@ -44,25 +44,3 @@ stages:
         ArtifactName: 'drop'
         publishLocation: 'Container'
 
-- stage: Deploy
-  jobs:
-  - job: Deploy
-    dependsOn: Build
-    condition: succeeded()   
-   
-    pool:
-      vmImage: 'windows-latest'
-    steps: 
-    - task: DownloadBuildArtifacts@1
-      inputs:
-        buildType: 'current'
-        downloadType: 'single'
-        downloadPath: '$(System.ArtifactsDirectory)'
-        artifactName: 'drop'
-    - task: AzureRmWebAppDeployment@4
-      inputs:
-        ConnectionType: 'AzureRM'
-        azureSubscription: 'RND-SBX-SSG-HJANA_01(4b311249-491b-4cd3-bd7a-5fe2c69a3c12)'
-        appType: 'webApp'
-        WebAppName: 'webApp-AspNet-WestEurope'
-        packageForLinux: '$(System.ArtifactDirectory)/drop/*.zip'
