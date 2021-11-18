@@ -46,7 +46,9 @@ stages:
 
 - stage: Deploy
   jobs:
-  - job: Deploy   
+  - job: Deploy
+    dependsOn: Build
+    condition: succeeded()   
    
     pool:
       vmImage: 'windows-latest'
@@ -57,10 +59,10 @@ stages:
         downloadType: 'single'
         downloadPath: '$(System.ArtifactsDirectory)'
         artifactName: 'drop'
-    - task: AzureWebApp@1
+    - task: AzureRmWebAppDeployment@4
       inputs:
+        ConnectionType: 'AzureRM'
         azureSubscription: 'RND-SBX-SSG-HJANA_01(4b311249-491b-4cd3-bd7a-5fe2c69a3c12)'
         appType: 'webApp'
-        appName: 'webApp-AspNet-WestEurope'
-        package: '$(System.DefaultWorkingDirectory)/_HarithaJana..NETStack/drop/aspnet4-sample.zip'
-        deploymentMethod: 'auto'
+        WebAppName: 'webApp-AspNet-WestEurope'
+        packageForLinux: '$(System.ArtifactDirectory)/drop/*.zip'
