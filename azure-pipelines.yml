@@ -43,4 +43,11 @@ stages:
         PathtoPublish: '$(Build.ArtifactStagingDirectory)'
         ArtifactName: 'drop'
         publishLocation: 'Container'
+    - task: AzureRmWebAppDeployment@4
+      displayName: 'Deploy Azure App Service'
+      inputs:
+        azureSubscription: '$(Parameters.ConnectedServiceName)'
+        appType: '$(Parameters.WebAppKind)'
+        WebAppName: '$(Parameters.WebAppName)'
+        packageForLinux: '$(System.DefaultWorkingDirectory)/_HarithaJana..NETStack/drop/aspnet4-sample.zip'
 
