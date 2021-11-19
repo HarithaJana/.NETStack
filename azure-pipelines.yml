@@ -59,6 +59,6 @@ stages:
       inputs:
         ConnectionType: 'AzureRM'
         azureSubscription: 'RND-SBX-SSG-HJANA_01(4b311249-491b-4cd3-bd7a-5fe2c69a3c12)'
-        appType: 'webAppLinux'
-        WebAppName: 'webappdatabasewesteurope'
+        appType: 'webApp'
+        WebAppName: 'webapp-yaml-westeurope'
         packageForLinux: '$(System.DefaultWorkingDirectory)/_HarithaJana..NETStack/drop/aspnet4-sample.zip'
