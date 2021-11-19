@@ -61,4 +61,4 @@ stages:
         azureSubscription: 'RND-SBX-SSG-HJANA_01(4b311249-491b-4cd3-bd7a-5fe2c69a3c12)'
         appType: 'webApp'
         WebAppName: 'webapp-yaml-westeurope'
-        packageForLinux: '$(System.ArtifactsDirectory)/D:\a\1\a\drop/aspnet4-sample.zip'
+        packageForLinux: '$(System.ArtifactsDirectory)/drop/aspnet4-sample.zip'
