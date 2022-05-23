@@ -44,7 +44,7 @@ stages:
           - task: AzureRmWebAppDeployment@4
             inputs:
               ConnectionType: 'AzureRM'
-              azureSubscription: 'Free Trial(753cf41e-5f3d-4626-b036-5af5992251ee)'
+              azureSubscription: 'FinovateServiceConnection'
               appType: 'webApp'
               WebAppName: 'yaml-demo'
               packageForLinux: '$(System.ArtifactsDirectory)'
